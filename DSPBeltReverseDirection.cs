@@ -227,6 +227,10 @@ namespace DSPBeltReverseDirection
                     if (entityOfMachineOutputting.stationId != 0)
                     {
                         Logger.LogInfo("      Belt receiving input from station " + entityOfMachineOutputting.stationId.ToString());
+                        StationComponent stationComponent = factory.transport.stationPool[entityOfMachineOutputting.stationId];
+                        stationComponent.slots[slotOfMachineOutputting].dir = IODir.Input;
+                        stationComponent.slots[slotOfMachineOutputting].beltId = lastBeltId;
+                        stationComponent.slots[slotOfMachineOutputting].counter = 0;
                     }
                 }
                 if (entityIdOfMachineGettingInput > 0)
@@ -259,6 +263,10 @@ namespace DSPBeltReverseDirection
                     if (entityOfMachineGettingInput.stationId != 0)
                     {
                         Logger.LogInfo("      Belt outputting to station " + entityOfMachineGettingInput.stationId.ToString());
+                        StationComponent stationComponent = factory.transport.stationPool[entityOfMachineGettingInput.stationId];
+                        stationComponent.slots[slotOfMachineGettingInput].dir = IODir.Output;
+                        stationComponent.slots[slotOfMachineGettingInput].beltId = firstBeltId;
+                        stationComponent.slots[slotOfMachineGettingInput].counter = 0;
                     }
                 }
 
