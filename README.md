@@ -6,7 +6,7 @@
 
 If you like this mod, please click the thumbs up at the [top of the page](https://dsp.thunderstore.io/package/GreyHak/DSP_Belt_Reverse_Direction/) (next to the Total rating).  That would be a nice thank you for me, and help other people to find a mod you enjoy.
 
-If you have issues with this mod, please report them on [GitHub](https://github.com/GreyHak/dsp-belt-reverse/issues).  I try to respond within 12 hours.
+If you have issues with this mod, please report them on [GitHub](https://github.com/GreyHak/dsp-belt-reverse/issues).  I try to respond within 12 hours.  You can also contact me on Discord at GreyHak#2995.
 
 ## Config File
 
