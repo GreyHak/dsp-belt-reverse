@@ -163,8 +163,8 @@ namespace DSPBeltReverseDirection
                 Logger.LogInfo(cargoTraffic.beltPool[cargoPathBelts[cargoPathBelts.Count - 2]].id.ToString() + " -> " + cargoTraffic.beltPool[cargoPathBelts[cargoPathBelts.Count - 1]].id.ToString() + " Done");
                 GameMain.mainPlayer.factory.cargoTraffic.AlterBeltConnections(cargoTraffic.beltPool[cargoPathBelts[cargoPathBelts.Count - 1]].id, 0, cargoTraffic.beltPool[cargoPathBelts[cargoPathBelts.Count - 2]].id, 0, 0);
 
-                //VFAudio.Create("build-start", null, Vector3.zero, true);
-                VFAudio.Create("build-start", null, GameMain.mainPlayer.factory.entityPool[beltComponent.entityId].pos, true);
+                // Audio comes from LDB.audios.  Good built-in choices are "warp-end" or "ui-click-2" (the upgrade sound).
+                VFAudio.Create("ui-click-2", null, GameMain.mainPlayer.factory.entityPool[beltComponent.entityId].pos, true);
             }
         }
     }
