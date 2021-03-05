@@ -2,6 +2,8 @@
 
 **Belt Reverse Direction** is a mod for the Unity game Dyson Sphere Program developed by Youthcat Studio and published by Gamera Game.  The game is available on [here](https://store.steampowered.com/app/1366540/Dyson_Sphere_Program/).
 
+![ReverseButton.jpg](https://raw.githubusercontent.com/GreyHak/dsp-belt-reverse/master/ReverseButton.jpg)
+
 If you like this mod, please click the thumbs up at the [top of the page](https://dsp.thunderstore.io/package/GreyHak/DSP_Belt_Reverse_Direction/) (next to the Total rating).  That would be a nice thank you for me, and help other people to find a mod you enjoy.
 
 If you have issues with this mod, please report them on [GitHub](https://github.com/GreyHak/dsp-belt-reverse/issues).  I try to respond within 12 hours.
