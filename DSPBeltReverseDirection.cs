@@ -52,6 +52,21 @@ namespace DSPBeltReverseDirection
         public static RectTransform reverseButton;
         public static Sprite reverseSprite;
 
+        // The first call happens for some reason when the first game is loading (probably right after it gets created).
+        // This causes the tip to be displayed without a mouse-over when the BeltWindow opens for the first time.
+        static bool ignoreFirstReverseButtonOnPointerEnter = true;
+
+        [HarmonyPrefix, HarmonyPatch(typeof(UIButton), "OnPointerEnter")]
+        public static bool UIButton_OnPointerEnter_Prefix(UIButton __instance)
+        {
+            if (reverseButton != null && __instance == reverseButton.GetComponent<UIButton>() && ignoreFirstReverseButtonOnPointerEnter)
+            {
+                ignoreFirstReverseButtonOnPointerEnter = false;
+                return false;
+            }
+            return true;
+        }
+
         [HarmonyPrefix, HarmonyPatch(typeof(GameMain), "Begin")]
         public static void GameMain_Begin_Prefix()
         {
@@ -64,7 +79,6 @@ namespace DSPBeltReverseDirection
                     reverseButton = GameObject.Instantiate<RectTransform>(prefab);
                     reverseButton.gameObject.name = "greyhak-reverse-button";
                     UIButton uiButton = reverseButton.GetComponent<UIButton>();
-                    uiButton.CloseTip();
                     uiButton.tips.tipTitle = "Reverse Belt Direction";
                     uiButton.tips.tipText = "Click to reverse the direction of the conveyer belt.";
                     uiButton.tips.delay = 0f;
