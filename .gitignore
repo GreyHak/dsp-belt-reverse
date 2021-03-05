@@ -1,0 +1,6 @@
+.vs
+bin/Debug
+bin/Release
+Libraries/*.dll
+obj/Debug
+obj/Release
