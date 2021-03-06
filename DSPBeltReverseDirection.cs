@@ -198,14 +198,7 @@ namespace DSPBeltReverseDirection
 
                     ReverseConnection reverseConnection = new ReverseConnection();
                     reverseConnection.targetId = thisBelt.id;
-                    if (beltIdx > 0)
-                        reverseConnection.outputId = cargoTraffic.beltPool[cargoPath.belts[beltIdx - 1]].id;
-                    else if (thisBelt.backInputId != 0)
-                        reverseConnection.outputId = thisBelt.backInputId;
-                    else if (thisBelt.leftInputId != 0)
-                        reverseConnection.outputId = thisBelt.leftInputId;
-                    else if (thisBelt.rightInputId != 0)
-                        reverseConnection.outputId = thisBelt.rightInputId;
+                    reverseConnection.outputId = thisBelt.mainInputId;
                     Logger.LogInfo("      targetId=" + reverseConnection.targetId.ToString() + ", outputId=" + reverseConnection.outputId.ToString());
 
                     List<int> inputs = new List<int>();
@@ -258,10 +251,7 @@ namespace DSPBeltReverseDirection
                     if (entityOfMachineOutputting.stationId != 0)
                     {
                         Logger.LogInfo("      Belt receiving input from station " + entityOfMachineOutputting.stationId.ToString());
-                        StationComponent stationComponent = factory.transport.stationPool[entityOfMachineOutputting.stationId];
-                        stationComponent.slots[slotOfMachineOutputting].dir = IODir.Input;
-                        stationComponent.slots[slotOfMachineOutputting].beltId = lastBeltId;
-                        stationComponent.slots[slotOfMachineOutputting].counter = 0;
+                        factory.ApplyEntityInput(entityOfMachineOutputting.id, firstBelt.entityId, slotOfMachineOutputting, slotOfMachineOutputting, 0);
                     }
                 }
                 if (entityIdOfMachineGettingInput > 0)
@@ -294,10 +284,7 @@ namespace DSPBeltReverseDirection
                     if (entityOfMachineGettingInput.stationId != 0)
                     {
                         Logger.LogInfo("      Belt outputting to station " + entityOfMachineGettingInput.stationId.ToString());
-                        StationComponent stationComponent = factory.transport.stationPool[entityOfMachineGettingInput.stationId];
-                        stationComponent.slots[slotOfMachineGettingInput].dir = IODir.Output;
-                        stationComponent.slots[slotOfMachineGettingInput].beltId = firstBeltId;
-                        stationComponent.slots[slotOfMachineGettingInput].counter = 0;
+                        factory.ApplyEntityOutput(entityOfMachineGettingInput.id, lastBelt.entityId, slotOfMachineGettingInput, slotOfMachineGettingInput, 0);
                     }
                 }
 
