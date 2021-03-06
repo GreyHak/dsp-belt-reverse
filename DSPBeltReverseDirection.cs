@@ -93,7 +93,6 @@ namespace DSPBeltReverseDirection
                     {
                         ReverseBelt(UIRoot.instance.uiGame.beltWindow.beltId);
                     });
-
                 }
             }
         }
@@ -251,12 +250,12 @@ namespace DSPBeltReverseDirection
                     if (entityOfMachineOutputting.stationId != 0)
                     {
                         Logger.LogInfo("      Belt receiving input from station " + entityOfMachineOutputting.stationId.ToString());
-                        factory.ApplyEntityInput(entityOfMachineOutputting.id, firstBelt.entityId, slotOfMachineOutputting, slotOfMachineOutputting, 0);
-                        factory.ClearObjectConn(firstBelt.entityId);
-                        factory.WriteObjectConnDirect(firstBelt.entityId, 0, false, entityIdOfMachineOutputting, slotOfMachineOutputting);
-                        factory.WriteObjectConnDirect(entityIdOfMachineOutputting, slotOfMachineOutputting, false, firstBelt.entityId, 0);
+                        factory.ApplyEntityInput(entityIdOfMachineOutputting, firstBelt.entityId, slotOfMachineOutputting, slotOfMachineOutputting, 0);
                         Logger.LogInfo("         Station now set to " + factory.transport.stationPool[entityOfMachineOutputting.stationId].slots[slotOfMachineOutputting].dir.ToString());
                     }
+                    factory.ClearObjectConn(firstBelt.entityId);
+                    factory.WriteObjectConnDirect(firstBelt.entityId, 0, false, entityIdOfMachineOutputting, slotOfMachineOutputting);
+                    factory.WriteObjectConnDirect(entityIdOfMachineOutputting, slotOfMachineOutputting, false, firstBelt.entityId, 0);
                 }
                 if (entityIdOfMachineGettingInput > 0)
                 {
@@ -288,12 +287,12 @@ namespace DSPBeltReverseDirection
                     if (entityOfMachineGettingInput.stationId != 0)
                     {
                         Logger.LogInfo("      Belt outputting to station " + entityOfMachineGettingInput.stationId.ToString());
-                        factory.ApplyEntityOutput(entityOfMachineGettingInput.id, lastBelt.entityId, slotOfMachineGettingInput, slotOfMachineGettingInput, 0);
-                        factory.ClearObjectConn(lastBelt.entityId);
-                        factory.WriteObjectConnDirect(lastBelt.entityId, 1, true, entityIdOfMachineGettingInput, slotOfMachineGettingInput);
-                        factory.WriteObjectConnDirect(entityIdOfMachineGettingInput, slotOfMachineGettingInput, true, lastBelt.entityId, 1);
+                        factory.ApplyEntityOutput(entityIdOfMachineGettingInput, lastBelt.entityId, slotOfMachineGettingInput, slotOfMachineGettingInput, 0);
                         Logger.LogInfo("         Station now set to " + factory.transport.stationPool[entityOfMachineGettingInput.stationId].slots[slotOfMachineGettingInput].dir.ToString());
                     }
+                    factory.ClearObjectConn(lastBelt.entityId);
+                    factory.WriteObjectConnDirect(lastBelt.entityId, 1, true, entityIdOfMachineGettingInput, slotOfMachineGettingInput);
+                    factory.WriteObjectConnDirect(entityIdOfMachineGettingInput, slotOfMachineGettingInput, true, lastBelt.entityId, 1);
                 }
 
                 // Audio comes from LDB.audios.  Good built-in choices are "warp-end" or "ui-click-2" (the upgrade sound).
