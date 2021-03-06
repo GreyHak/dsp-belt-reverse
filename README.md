@@ -1,6 +1,6 @@
 # Belt Reverse Direction for Dyson Sphere Program
 
-<font color='red'>**BETA RELEASE - This mod is still in development, and is entering the testing phase.  If you want solid reliability, please come back later.  If you want to experiment, testing feedback is appreciated.  If you encounter issues, please leave detailed feedback [on GitHub here](https://github.com/GreyHak/dsp-belt-reverse/issues).**</font>
+<font color='red'>**BETA RELEASE - This mod is still in development, and is entering the testing phase.  If you want reliability, please come back later.  If you want to experiment, please backup your saves.  Testing feedback is appreciated.  If you encounter issues, please leave detailed feedback on how to reproduce the problem [on GitHub here](https://github.com/GreyHak/dsp-belt-reverse/issues).  You can also contact me at GreyHak#2995 on the [DSP Modding](https://discord.gg/XxhyTNte) Discord #tech-support channel.**</font>
 
 **Belt Reverse Direction** is a mod for the Unity game Dyson Sphere Program developed by Youthcat Studio and published by Gamera Game.  The game is available on [here](https://store.steampowered.com/app/1366540/Dyson_Sphere_Program/).
 
@@ -8,7 +8,7 @@ To reverse the direction of a conveyor belt, click on any segment of the conveyo
 ![ReverseButton.jpg](https://raw.githubusercontent.com/GreyHak/dsp-belt-reverse/master/ReverseButton.jpg)
 If you like this mod, please click the thumbs up at the [top of the page](https://dsp.thunderstore.io/package/GreyHak/DSP_Belt_Reverse_Direction/) (next to the Total rating).  That would be a nice thank you for me, and help other people to find a mod you enjoy.
 
-If you have issues with this mod, please report them on [GitHub](https://github.com/GreyHak/dsp-belt-reverse/issues).  I try to respond within 12 hours.  You can also contact me on Discord at GreyHak#2995.
+If you have issues with this mod, please report them on [GitHub](https://github.com/GreyHak/dsp-belt-reverse/issues).  I try to respond within 12 hours.    You can also contact me at GreyHak#2995 on the [DSP Modding](https://discord.gg/XxhyTNte) Discord #tech-support channel..
 
 ## Config File
 
