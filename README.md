@@ -1,9 +1,11 @@
 # Belt Reverse Direction for Dyson Sphere Program
 
+<font color='red'>**BETA RELEASE - This mod is still in development, and is entering the testing phase.  If you want solid reliability, please come back later.  If you want to experiment, testing feedback is appreciated.  If you encounter issues, please leave detailed feedback [on GitHub here](https://github.com/GreyHak/dsp-belt-reverse/issues).**</font>
+
 **Belt Reverse Direction** is a mod for the Unity game Dyson Sphere Program developed by Youthcat Studio and published by Gamera Game.  The game is available on [here](https://store.steampowered.com/app/1366540/Dyson_Sphere_Program/).
 
+To reverse the direction of a conveyor belt, click on any segment of the conveyor belt, and click the reverse button.
 ![ReverseButton.jpg](https://raw.githubusercontent.com/GreyHak/dsp-belt-reverse/master/ReverseButton.jpg)
-
 If you like this mod, please click the thumbs up at the [top of the page](https://dsp.thunderstore.io/package/GreyHak/DSP_Belt_Reverse_Direction/) (next to the Total rating).  That would be a nice thank you for me, and help other people to find a mod you enjoy.
 
 If you have issues with this mod, please report them on [GitHub](https://github.com/GreyHak/dsp-belt-reverse/issues).  I try to respond within 12 hours.  You can also contact me on Discord at GreyHak#2995.
@@ -24,5 +26,5 @@ This mod can also be installed using ebkr's [r2modman dsp](https://dsp.thunderst
 The source code for this mod is available for download, review and forking on GitHub [here](https://github.com/GreyHak/dsp-belt-reverse) under the BSD 3 clause license.
 
 ## Change Log
-### v1.0.0
- - Initial release.
+### v0.1.0-beta
+ - Initial release.  Connections to Fractionators are known to be broken.
