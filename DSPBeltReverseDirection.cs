@@ -81,7 +81,7 @@ namespace DSPBeltReverseDirection
                     reverseButton.gameObject.name = "greyhak-reverse-button";
                     UIButton uiButton = reverseButton.GetComponent<UIButton>();
                     uiButton.tips.tipTitle = "Reverse Belt Direction";
-                    uiButton.tips.tipText = "Click to reverse the direction of the conveyer belt.";
+                    uiButton.tips.tipText = "Click to reverse the direction of the conveyor belt.";
                     uiButton.tips.delay = 0f;
                     reverseButton.transform.Find("button-1/icon").GetComponent<Image>().sprite = GetSprite();
                     reverseButton.SetParent(UIRoot.instance.uiGame.beltWindow.windowTrans);
