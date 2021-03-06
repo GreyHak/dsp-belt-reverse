@@ -26,4 +26,4 @@ The source code for this mod is available for download, review and forking on Gi
 
 ## Change Log
 ### v0.1.0-beta
- - Initial release.  Connections to Fractionators are known to be broken.
+ - Initial release.
