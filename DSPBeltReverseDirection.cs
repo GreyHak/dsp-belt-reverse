@@ -201,27 +201,56 @@ namespace DSPBeltReverseDirection
                 if (entity.splitterId != 0)
                 {
                     SplitterComponent splitterComponent = cargoTraffic.splitterPool[entity.splitterId];
-                    Logger.LogDebug("      Is splitterId=" + entity.splitterId.ToString());
+                    Logger.LogDebug("      Is splitterId=" + entity.splitterId.ToString() +
+                        ", beltA=" + splitterComponent.beltA.ToString() +
+                        ", beltB=" + splitterComponent.beltB.ToString() +
+                        ", beltC=" + splitterComponent.beltC.ToString() +
+                        ", beltD=" + splitterComponent.beltD.ToString());
                 }
                 if (entity.minerId != 0)
                 {
+                    MinerComponent minerComponent = factory.factorySystem.minerPool[entity.minerId];
                     Logger.LogDebug("      Is minerId=" + entity.minerId.ToString());
                 }
                 if (entity.tankId != 0)
                 {
-                    Logger.LogDebug("      Is tankId=" + entity.tankId.ToString());
+                    TankComponent tankComponent = factory.factoryStorage.tankPool[entity.tankId];
+                    Logger.LogDebug("      Is tankId=" + entity.tankId.ToString() +
+                        ", belt0=" + tankComponent.belt0.ToString() + (tankComponent.isOutput0 ? "(output)" : "(input)") +
+                        ", belt1=" + tankComponent.belt1.ToString() + (tankComponent.isOutput1 ? "(output)" : "(input)") +
+                        ", belt2=" + tankComponent.belt2.ToString() + (tankComponent.isOutput2 ? "(output)" : "(input)") +
+                        ", belt3=" + tankComponent.belt3.ToString() + (tankComponent.isOutput3 ? "(output)" : "(input)"));
                 }
                 if (entity.fractionateId != 0)
                 {
-                    Logger.LogDebug("      Is fractionateId=" + entity.fractionateId.ToString());
+                    FractionateComponent fractionateComponent = factory.factorySystem.fractionatePool[entity.fractionateId];
+                    Logger.LogDebug("      Is fractionateId=" + entity.fractionateId.ToString() +
+                        ", belt0=" + fractionateComponent.belt0.ToString() + (fractionateComponent.isOutput0 ? "(output)" : "(input)") +
+                        ", belt1=" + fractionateComponent.belt1.ToString() + (fractionateComponent.isOutput1 ? "(output)" : "(input)") +
+                        ", belt2=" + fractionateComponent.belt2.ToString() + (fractionateComponent.isOutput2 ? "(output)" : "(input)"));
                 }
                 if (entity.powerExcId != 0)
                 {
-                    Logger.LogDebug("      Is powerExcId=" + entity.powerExcId.ToString());
+                    PowerExchangerComponent powerExchangerComponent = factory.powerSystem.excPool[entity.powerExcId];
+                    Logger.LogDebug("      Is powerExcId=" + entity.powerExcId.ToString() +
+                        ", belt0=" + powerExchangerComponent.belt0.ToString() + (powerExchangerComponent.isOutput0 ? "(output)" : "(input)") +
+                        ", belt1=" + powerExchangerComponent.belt1.ToString() + (powerExchangerComponent.isOutput1 ? "(output)" : "(input)") +
+                        ", belt2=" + powerExchangerComponent.belt2.ToString() + (powerExchangerComponent.isOutput2 ? "(output)" : "(input)") +
+                        ", belt3=" + powerExchangerComponent.belt3.ToString() + (powerExchangerComponent.isOutput3 ? "(output)" : "(input)"));
                 }
                 if (entity.stationId != 0)
                 {
-                    Logger.LogDebug("      Is stationId=" + entity.stationId.ToString());
+                    StationComponent stationComponent = factory.transport.stationPool[entity.stationId];
+                    Logger.LogDebug("      Is stationId=" + entity.stationId.ToString() + " name=" + stationComponent.name);
+                }
+
+                for (int slotIdx = 0; slotIdx < 6; ++slotIdx)
+                {
+                    factory.ReadObjectConn(entityId, slotIdx, out bool outputFlag, out int otherEntityId, out int otherEntitySlot);
+                    if (otherEntityId != 0)
+                    {
+                        Logger.LogDebug("        Slot " + slotIdx.ToString() + (outputFlag ? " outputting to " : " inputting from ") + "entity " + otherEntityId.ToString() + " slot " + otherEntitySlot.ToString());
+                    }
                 }
             }
         }
@@ -239,9 +268,9 @@ namespace DSPBeltReverseDirection
         {
             int selectedBeltId = UIRoot.instance.uiGame.beltWindow.beltId;
             PlanetFactory factory = GameMain.mainPlayer.factory;
-            ref CargoTraffic cargoTraffic = ref factory.cargoTraffic;
-            ref BeltComponent selectedBeltComponent = ref cargoTraffic.beltPool[selectedBeltId];
-            ref CargoPath cargoPath = ref cargoTraffic.pathPool[selectedBeltComponent.segPathId];
+            CargoTraffic cargoTraffic = factory.cargoTraffic;
+            BeltComponent selectedBeltComponent = cargoTraffic.beltPool[selectedBeltId];
+            CargoPath cargoPath = cargoTraffic.pathPool[selectedBeltComponent.segPathId];
 
             if (cargoPath.belts.Count > 1)
             {
