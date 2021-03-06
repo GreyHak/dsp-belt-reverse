@@ -155,6 +155,8 @@ namespace DSPBeltReverseDirection
         public const int BELT_INPUT_SLOT = 1;
         public const int BELT_OUTPUT_SLOT = 0;
 
+        // See this debug data in BepInEx console by setting Logging.Console.Enabled = true.
+        // See this debug data in LogOutput.log by adding Debug to Logging.Disk.LogLevels.
         public static void PrintDebugInformationAboutPath(int data)
         {
             int selectedBeltId = UIRoot.instance.uiGame.beltWindow.beltId;
@@ -274,7 +276,7 @@ namespace DSPBeltReverseDirection
 
             if (cargoPath.belts.Count > 1)
             {
-                Logger.LogWarning("Reverse!");
+                Logger.LogMessage("Reverse!");
 
                 int firstBeltId = cargoPath.belts[0];
                 int lastBeltId = cargoPath.belts[cargoPath.belts.Count - 1];
@@ -333,7 +335,7 @@ namespace DSPBeltReverseDirection
                     if (entityOfMachineOutputting.splitterId != 0)
                     {
                         Logger.LogInfo("      Belt receiving input from splitter " + entityOfMachineOutputting.splitterId.ToString());
-                        cargoTraffic.ConnectToSplitter(entityOfMachineOutputting.splitterId, lastBeltId, slotOfMachineOutputting, true);
+                        cargoTraffic.ConnectToSplitter(entityOfMachineOutputting.splitterId, firstBeltId, slotOfMachineOutputting, true);
                     }
                     else if (entityOfMachineOutputting.minerId != 0)
                     {
@@ -343,17 +345,17 @@ namespace DSPBeltReverseDirection
                     else if (entityOfMachineOutputting.tankId != 0)
                     {
                         Logger.LogInfo("      Belt receiving input from tank " + entityOfMachineOutputting.tankId.ToString());
-                        factory.factoryStorage.SetTankBelt(entityOfMachineOutputting.tankId, lastBeltId, slotOfMachineOutputting, false);
+                        factory.factoryStorage.SetTankBelt(entityOfMachineOutputting.tankId, firstBeltId, slotOfMachineOutputting, false);
                     }
                     else if (entityOfMachineOutputting.fractionateId != 0)
                     {
                         Logger.LogInfo("      Belt receiving input from fractionator " + entityOfMachineOutputting.fractionateId.ToString());
-                        factory.factorySystem.SetFractionateBelt(entityOfMachineOutputting.fractionateId, lastBeltId, slotOfMachineOutputting, false);
+                        factory.factorySystem.SetFractionateBelt(entityOfMachineOutputting.fractionateId, firstBeltId, slotOfMachineOutputting, false);
                     }
                     else if (entityOfMachineOutputting.powerExcId != 0)
                     {
                         Logger.LogInfo("      Belt receiving input from power exchanger " + entityOfMachineOutputting.powerExcId.ToString());
-                        factory.powerSystem.SetExchangerBelt(entityOfMachineOutputting.powerExcId, lastBeltId, slotOfMachineOutputting, false);
+                        factory.powerSystem.SetExchangerBelt(entityOfMachineOutputting.powerExcId, firstBeltId, slotOfMachineOutputting, false);
                     }
                     else if (entityOfMachineOutputting.stationId != 0)
                     {
@@ -370,7 +372,7 @@ namespace DSPBeltReverseDirection
                     if (entityOfMachineGettingInput.splitterId != 0)
                     {
                         Logger.LogInfo("      Belt outputting to splitter " + entityOfMachineGettingInput.splitterId.ToString());
-                        cargoTraffic.ConnectToSplitter(entityOfMachineGettingInput.splitterId, firstBeltId, slotOfMachineGettingInput, false);
+                        cargoTraffic.ConnectToSplitter(entityOfMachineGettingInput.splitterId, lastBeltId, slotOfMachineGettingInput, false);
                     }
                     else if (entityOfMachineGettingInput.minerId != 0)
                     {
@@ -379,17 +381,17 @@ namespace DSPBeltReverseDirection
                     else if (entityOfMachineGettingInput.tankId != 0)
                     {
                         Logger.LogInfo("      Belt outputting to tank " + entityOfMachineGettingInput.tankId.ToString());
-                        factory.factoryStorage.SetTankBelt(entityOfMachineGettingInput.tankId, firstBeltId, slotOfMachineGettingInput, true);
+                        factory.factoryStorage.SetTankBelt(entityOfMachineGettingInput.tankId, lastBeltId, slotOfMachineGettingInput, true);
                     }
                     else if (entityOfMachineGettingInput.fractionateId != 0)
                     {
                         Logger.LogInfo("      Belt outputting to fractionator " + entityOfMachineGettingInput.fractionateId.ToString());
-                        factory.factorySystem.SetFractionateBelt(entityOfMachineGettingInput.fractionateId, firstBeltId, slotOfMachineGettingInput, true);
+                        factory.factorySystem.SetFractionateBelt(entityOfMachineGettingInput.fractionateId, lastBeltId, slotOfMachineGettingInput, true);
                     }
                     else if (entityOfMachineGettingInput.powerExcId != 0)
                     {
                         Logger.LogInfo("      Belt outputting to power exchanger " + entityOfMachineGettingInput.powerExcId.ToString());
-                        factory.powerSystem.SetExchangerBelt(entityOfMachineGettingInput.powerExcId, firstBeltId, slotOfMachineGettingInput, true);
+                        factory.powerSystem.SetExchangerBelt(entityOfMachineGettingInput.powerExcId, lastBeltId, slotOfMachineGettingInput, true);
                     }
                     else if (entityOfMachineGettingInput.stationId != 0)
                     {
