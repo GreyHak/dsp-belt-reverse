@@ -23,6 +23,7 @@ The source code for this mod is available for download, review and forking on Gi
 
 ## Change Log
 ### v1.0.0
+ - Secondary belt inputs will no longer break a primary line when reversed.
  - Thank you to iskabot and [Appun](https://dsp.thunderstore.io/package/appuns/) and Nordblum on Discord for beta testing.
 ### v0.1.0-beta
  - Initial release.

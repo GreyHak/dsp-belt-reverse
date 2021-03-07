@@ -296,6 +296,12 @@ namespace DSPBeltReverseDirection
                     Logger.LogInfo((beltIdx > 0 ? cargoTraffic.beltPool[cargoPath.belts[beltIdx - 1]].id.ToString() : "start") + " -> " + thisBelt.id.ToString() + " -> " + (beltIdx + 1 < cargoPath.belts.Count ? cargoTraffic.beltPool[cargoPath.belts[beltIdx + 1]].id.ToString() : "end"));
                     Logger.LogInfo("   outputId=" + thisBelt.outputId.ToString() + ", backInputId=" + thisBelt.backInputId.ToString() + ", leftInputId=" + thisBelt.leftInputId.ToString() + ", rightInputId=" + thisBelt.rightInputId.ToString());
 
+                    if (beltIdx == cargoPath.belts.Count - 1 && thisBelt.outputId != 0 && cargoTraffic.beltPool[thisBelt.outputId].segPathId != thisBelt.segPathId)
+                    {
+                        // About to break a primary segment, so consider this belt as having no output
+                        thisBelt.outputId = 0;
+                    }
+
                     ReverseConnection reverseConnection = new ReverseConnection
                     {
                         targetId = thisBelt.id,
