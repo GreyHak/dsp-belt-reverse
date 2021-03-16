@@ -19,6 +19,10 @@ This mod can also be installed using ebkr's [r2modman](https://dsp.thunderstore.
 The source code for this mod is available for download, review and forking on GitHub [here](https://github.com/GreyHak/dsp-belt-reverse) under the BSD 3 clause license.
 
 ## Change Log
+### v1.1.0
+ - Reversing a belts direction will no longer send half the items on the belt to Icarus' inventory.  The mod now attempts to maintain the position of cargo on the belt.
+ - Bug fixed in cleanup of the old cargo path.
+ - Many debug messages downgraded from Info to Debug.  So BepInEx's default log level setting will be far less cluttered.
 ### v1.0.1
  - Rebuild required for the recent Dyson Sphere Program [0.6.17.5932 update](https://store.steampowered.com/news/app/1366540/view/4178750236020840924).
 ### v1.0.0
