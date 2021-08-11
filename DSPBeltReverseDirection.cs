@@ -33,7 +33,7 @@ namespace DSPBeltReverseDirection
     {
         public const string pluginGuid = "greyhak.dysonsphereprogram.beltreversedirection";
         public const string pluginName = "DSP Belt Reverse Direction";
-        public const string pluginVersion = "1.1.0";
+        public const string pluginVersion = "1.1.1";
         new internal static ManualLogSource Logger;
         new internal static BepInEx.Configuration.ConfigFile Config;
         Harmony harmony;
@@ -86,7 +86,7 @@ namespace DSPBeltReverseDirection
                     reverseButton.transform.Find("button-1/icon").GetComponent<Image>().sprite = GetSprite();
                     reverseButton.SetParent(UIRoot.instance.uiGame.beltWindow.windowTrans);
                     reverseButton.localScale = new Vector3(0.5f, 0.5f, 0.5f);
-                    reverseButton.localPosition = new Vector3(66, -60, 0);
+                    reverseButton.localPosition = new Vector3(5, 42, 0);
                     uiButton.OnPointerDown(null);
                     uiButton.OnPointerEnter(null);
                     uiButton.button.onClick.AddListener(() =>

@@ -6,10 +6,10 @@ To reverse the direction of a conveyor belt, click on any segment of the conveyo
 ![Reverse Button image](https://raw.githubusercontent.com/GreyHak/dsp-belt-reverse/master/ReverseButton.jpg)
 If you like this mod, please click the thumbs up at the [top of the page](https://dsp.thunderstore.io/package/GreyHak/DSP_Belt_Reverse_Direction/) (next to the Total rating).  That would be a nice thank you for me, and help other people to find a mod you enjoy.
 
-If you have issues with this mod, please report them on [GitHub](https://github.com/GreyHak/dsp-belt-reverse/issues).  I try to respond within 12 hours.    You can also contact me at GreyHak#2995 on the [DSP Modding](https://discord.gg/XxhyTNte) Discord #tech-support channel..
+If you have issues with this mod, please report them on [GitHub](https://github.com/GreyHak/dsp-belt-reverse/issues).  You can also contact me at GreyHak#2995 on the [DSP Modding](https://discord.gg/XxhyTNte) Discord #tech-support channel.
 
 ## Installation
-This mod uses the BepInEx mod plugin framework.  So BepInEx must be installed to use this mod.  Find details for installing BepInEx [in their user guide](https://bepinex.github.io/bepinex_docs/master/articles/user_guide/installation/index.html#installing-bepinex-1).  This mod was tested with BepInEx x64 5.4.5.0 and Dyson Sphere Program 0.6.16.5831 on Windows 10.
+This mod uses the BepInEx mod plugin framework.  So BepInEx must be installed to use this mod.  Find details for installing BepInEx [in their user guide](https://bepinex.github.io/bepinex_docs/master/articles/user_guide/installation/index.html#installing-bepinex-1).  This mod was tested with BepInEx x64 5.4.11.0 and Dyson Sphere Program 0.8.19.7863 on Windows 10.
 
 To manually install this mod, add the `DSPBeltReverseDirection.dll` to your `%PROGRAMFILES(X86)%\Steam\steamapps\common\Dyson Sphere Program\BepInEx\plugins\` folder.
 
@@ -19,6 +19,8 @@ This mod can also be installed using ebkr's [r2modman](https://dsp.thunderstore.
 The source code for this mod is available for download, review and forking on GitHub [here](https://github.com/GreyHak/dsp-belt-reverse) under the BSD 3 clause license.
 
 ## Change Log
+### v1.1.1
+ - Updated button position to deconflict with new Memo Icon game feature.
 ### v1.1.0
  - Reversing a belts direction will no longer send half the items on the belt to Icarus' inventory.  The mod now attempts to maintain the position of cargo on the belt.
  - Bug fixed in cleanup of the old cargo path.
