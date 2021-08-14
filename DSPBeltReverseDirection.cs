@@ -33,7 +33,7 @@ namespace DSPBeltReverseDirection
     {
         public const string pluginGuid = "greyhak.dysonsphereprogram.beltreversedirection";
         public const string pluginName = "DSP Belt Reverse Direction";
-        public const string pluginVersion = "1.1.1";
+        public const string pluginVersion = "1.1.2";
         new internal static ManualLogSource Logger;
         new internal static BepInEx.Configuration.ConfigFile Config;
         Harmony harmony;
@@ -367,9 +367,34 @@ namespace DSPBeltReverseDirection
                     int entityIdOfThisBelt = cargoTraffic.beltPool[reverseConnection.targetId].entityId;
                     int entityIdOfOutputBelt = reverseConnection.outputId == 0 ? 0 : cargoTraffic.beltPool[reverseConnection.outputId].entityId;
                     int entityIdOfMainInputBelt = reverseConnection.inputId0 == 0 ? 0 : cargoTraffic.beltPool[reverseConnection.inputId0].entityId;
+
+                    // This loop will disconnect all inserters.  It's based on PlanetFactory.RemoveEntityWithComponents() and PlanetFactory.ApplyEntityDisconnection()
+                    for (int slotIdx = 0; slotIdx < 16; slotIdx++)
+                    {
+                        factory.ReadObjectConn(entityIdOfThisBelt, slotIdx, out bool flag, out int otherEntityId, out int otherSlotId);
+                        if (otherEntityId > 0)
+                        {
+                            int inserterId = factory.entityPool[otherEntityId].inserterId;
+                            if (inserterId > 0)  // Is otherEntityId an inserter entity?
+                            {
+                                if (factory.factorySystem.inserterPool[inserterId].insertTarget == entityIdOfThisBelt)
+                                {
+                                    Logger.LogDebug($"Disconnecting inserter insert target {inserterId} from {entityIdOfThisBelt}");
+                                    factory.factorySystem.SetInserterInsertTarget(inserterId, 0, 0);
+                                }
+                                if (factory.factorySystem.inserterPool[inserterId].pickTarget == entityIdOfThisBelt)
+                                {
+                                    Logger.LogDebug($"Disconnecting inserter pick target {inserterId} from {entityIdOfThisBelt}");
+                                    factory.factorySystem.SetInserterPickTarget(inserterId, 0, 0);
+                                }
+                            }
+                        }
+                    }
+
                     factory.ClearObjectConn(entityIdOfThisBelt);
                     factory.WriteObjectConnDirect(entityIdOfThisBelt, BELT_OUTPUT_SLOT, true, entityIdOfOutputBelt, BELT_INPUT_SLOT);
                     factory.WriteObjectConnDirect(entityIdOfThisBelt, BELT_INPUT_SLOT, false, entityIdOfMainInputBelt, BELT_OUTPUT_SLOT);
+                    factory.OnBeltBuilt(entityIdOfThisBelt);  // This reconnects the inserters
                 }
 
                 if (entityIdOfMachineOutputting > 0)

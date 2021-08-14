@@ -1,6 +1,6 @@
 {
     "name": "DSP_Belt_Reverse_Direction",
-    "version_number": "1.1.1",
+    "version_number": "1.1.2",
     "website_url": "https://github.com/GreyHak/dsp-belt-reverse",
     "description": "Reverse the direction of a converyer belt.",
     "dependencies": [
