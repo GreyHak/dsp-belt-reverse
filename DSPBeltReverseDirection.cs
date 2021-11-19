@@ -33,7 +33,7 @@ namespace DSPBeltReverseDirection
     {
         public const string pluginGuid = "greyhak.dysonsphereprogram.beltreversedirection";
         public const string pluginName = "DSP Belt Reverse Direction";
-        public const string pluginVersion = "1.1.3";
+        public const string pluginVersion = "1.1.4";
         new internal static ManualLogSource Logger;
         new internal static BepInEx.Configuration.ConfigFile Config;
         Harmony harmony;
