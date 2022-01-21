@@ -33,7 +33,7 @@ namespace DSPBeltReverseDirection
     {
         public const string pluginGuid = "greyhak.dysonsphereprogram.beltreversedirection";
         public const string pluginName = "DSP Belt Reverse Direction";
-        public const string pluginVersion = "1.1.4";
+        public const string pluginVersion = "1.1.5";
         new internal static ManualLogSource Logger;
         new internal static BepInEx.Configuration.ConfigFile Config;
         Harmony harmony;
@@ -494,7 +494,7 @@ namespace DSPBeltReverseDirection
                                 int cargoItem = cargo.item;
 
                                 cargoContainer.RemoveCargo(insertCargoId);
-                                if (GameMain.mainPlayer.package.AddItemStacked(cargoItem, 1) == 1)
+                                if (GameMain.mainPlayer.package.AddItemStacked(cargoItem, 1, 1, out int remainInc) == 1)
                                 {
                                     UIItemup.Up(cargoItem, 1);
                                 }
