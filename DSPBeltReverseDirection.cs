@@ -33,7 +33,7 @@ namespace DSPBeltReverseDirection
     {
         public const string pluginGuid = "greyhak.dysonsphereprogram.beltreversedirection";
         public const string pluginName = "DSP Belt Reverse Direction";
-        public const string pluginVersion = "1.1.5";
+        public const string pluginVersion = "1.1.6";
         new internal static ManualLogSource Logger;
         new internal static BepInEx.Configuration.ConfigFile Config;
         Harmony harmony;
@@ -223,10 +223,10 @@ namespace DSPBeltReverseDirection
                         ", belt2=" + tankComponent.belt2.ToString() + (tankComponent.isOutput2 ? "(output)" : "(input)") +
                         ", belt3=" + tankComponent.belt3.ToString() + (tankComponent.isOutput3 ? "(output)" : "(input)"));
                 }
-                if (entity.fractionateId != 0)
+                if (entity.fractionatorId != 0)
                 {
-                    FractionateComponent fractionateComponent = factory.factorySystem.fractionatePool[entity.fractionateId];
-                    Logger.LogDebug("      Is fractionateId=" + entity.fractionateId.ToString() +
+                    FractionatorComponent fractionateComponent = factory.factorySystem.fractionatorPool[entity.fractionatorId];
+                    Logger.LogDebug("      Is fractionatorId=" + entity.fractionatorId.ToString() +
                         ", belt0=" + fractionateComponent.belt0.ToString() + (fractionateComponent.isOutput0 ? "(output)" : "(input)") +
                         ", belt1=" + fractionateComponent.belt1.ToString() + (fractionateComponent.isOutput1 ? "(output)" : "(input)") +
                         ", belt2=" + fractionateComponent.belt2.ToString() + (fractionateComponent.isOutput2 ? "(output)" : "(input)"));
@@ -415,10 +415,10 @@ namespace DSPBeltReverseDirection
                         Logger.LogDebug("      Belt receiving input from tank " + entityOfMachineOutputting.tankId.ToString());
                         factory.factoryStorage.SetTankBelt(entityOfMachineOutputting.tankId, firstBeltId, slotOfMachineOutputting, false);
                     }
-                    else if (entityOfMachineOutputting.fractionateId != 0)
+                    else if (entityOfMachineOutputting.fractionatorId != 0)
                     {
-                        Logger.LogDebug("      Belt receiving input from fractionator " + entityOfMachineOutputting.fractionateId.ToString());
-                        factory.factorySystem.SetFractionateBelt(entityOfMachineOutputting.fractionateId, firstBeltId, slotOfMachineOutputting, false);
+                        Logger.LogDebug("      Belt receiving input from fractionator " + entityOfMachineOutputting.fractionatorId.ToString());
+                        factory.factorySystem.SetFractionatorBelt(entityOfMachineOutputting.fractionatorId, firstBeltId, slotOfMachineOutputting, false);
                     }
                     else if (entityOfMachineOutputting.powerExcId != 0)
                     {
@@ -451,10 +451,10 @@ namespace DSPBeltReverseDirection
                         Logger.LogDebug("      Belt outputting to tank " + entityOfMachineGettingInput.tankId.ToString());
                         factory.factoryStorage.SetTankBelt(entityOfMachineGettingInput.tankId, lastBeltId, slotOfMachineGettingInput, true);
                     }
-                    else if (entityOfMachineGettingInput.fractionateId != 0)
+                    else if (entityOfMachineGettingInput.fractionatorId != 0)
                     {
-                        Logger.LogDebug("      Belt outputting to fractionator " + entityOfMachineGettingInput.fractionateId.ToString());
-                        factory.factorySystem.SetFractionateBelt(entityOfMachineGettingInput.fractionateId, lastBeltId, slotOfMachineGettingInput, true);
+                        Logger.LogDebug("      Belt outputting to fractionator " + entityOfMachineGettingInput.fractionatorId.ToString());
+                        factory.factorySystem.SetFractionatorBelt(entityOfMachineGettingInput.fractionatorId, lastBeltId, slotOfMachineGettingInput, true);
                     }
                     else if (entityOfMachineGettingInput.powerExcId != 0)
                     {
