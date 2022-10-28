@@ -88,6 +88,8 @@ namespace DSPBeltReverseDirection
                     reverseButton.SetParent(UIRoot.instance.uiGame.beltWindow.windowTrans);
                     reverseButton.localScale = new Vector3(0.5f, 0.5f, 0.5f);
                     reverseButton.localPosition = new Vector3(5, 42, 0);
+                    uiButton.OnPointerDown(null);
+                    uiButton.OnPointerEnter(null);
                     uiButton.button.onClick.AddListener(() =>
                     {
                         ReverseBelt();
