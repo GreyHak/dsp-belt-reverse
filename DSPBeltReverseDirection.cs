@@ -29,11 +29,12 @@ namespace DSPBeltReverseDirection
 {
     [BepInPlugin(pluginGuid, pluginName, pluginVersion)]
     [BepInProcess("DSPGAME.exe")]
+    [BepInProcess("Dyson Sphere Program.exe")]
     public class DSPBeltReverseDirection : BaseUnityPlugin
     {
         public const string pluginGuid = "greyhak.dysonsphereprogram.beltreversedirection";
         public const string pluginName = "DSP Belt Reverse Direction";
-        public const string pluginVersion = "1.1.6";
+        public const string pluginVersion = "1.1.7";
         new internal static ManualLogSource Logger;
         new internal static BepInEx.Configuration.ConfigFile Config;
         Harmony harmony;
@@ -87,8 +88,6 @@ namespace DSPBeltReverseDirection
                     reverseButton.SetParent(UIRoot.instance.uiGame.beltWindow.windowTrans);
                     reverseButton.localScale = new Vector3(0.5f, 0.5f, 0.5f);
                     reverseButton.localPosition = new Vector3(5, 42, 0);
-                    uiButton.OnPointerDown(null);
-                    uiButton.OnPointerEnter(null);
                     uiButton.button.onClick.AddListener(() =>
                     {
                         ReverseBelt();
