@@ -9,14 +9,10 @@
 
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using BepInEx;
 using HarmonyLib;
 using UnityEngine;
 using UnityEngine.UI;
-using System.IO;
 using BepInEx.Logging;
 using System.Security;
 using System.Security.Permissions;
@@ -328,6 +324,7 @@ namespace DSPBeltReverseDirection
                 // Note: "Machine" at this point is likely to just be another conveyer.
 
                 List<ReverseConnection> reverseConnections = new List<ReverseConnection>();
+                List<int> inputs = new List<int>();
                 for (int beltIdx = cargoPath.belts.Count - 1; beltIdx >= 0; --beltIdx)
                 {
                     BeltComponent thisBelt = cargoTraffic.beltPool[cargoPath.belts[beltIdx]];
@@ -347,9 +344,11 @@ namespace DSPBeltReverseDirection
                     };
                     Logger.LogDebug("      targetId=" + reverseConnection.targetId.ToString() + ", outputId=" + reverseConnection.outputId.ToString());
 
-                    List<int> inputs = new List<int>();
+                    inputs.Clear();
                     if (thisBelt.outputId != 0) inputs.Add(thisBelt.outputId);
-                    if (thisBelt.backInputId != 0 && thisBelt.backInputId != reverseConnection.outputId) inputs.Add(thisBelt.backInputId);
+                    // Note: backInputId is always returned as mainInputId(then assigned to reverseConnection.outputId) if exists,
+                    //       so this condition is always false, comment it out.
+                    //   if (thisBelt.backInputId != 0 && thisBelt.backInputId != reverseConnection.outputId) inputs.Add(thisBelt.backInputId);
                     if (thisBelt.leftInputId != 0 && thisBelt.leftInputId != reverseConnection.outputId) inputs.Add(thisBelt.leftInputId);
                     if (thisBelt.rightInputId != 0 && thisBelt.rightInputId != reverseConnection.outputId) inputs.Add(thisBelt.rightInputId);
                     if (inputs.Count > 0) reverseConnection.inputId0 = inputs[0];
@@ -388,11 +387,11 @@ namespace DSPBeltReverseDirection
                                     Logger.LogDebug($"Disconnecting inserter pick target {inserterId} from {entityIdOfThisBelt}");
                                     factory.factorySystem.SetInserterPickTarget(inserterId, 0, 0);
                                 }
+                                factory.ClearObjectConn(entityIdOfThisBelt, slotIdx);
                             }
                         }
                     }
 
-                    factory.ClearObjectConn(entityIdOfThisBelt);
                     factory.WriteObjectConnDirect(entityIdOfThisBelt, BELT_OUTPUT_SLOT, true, entityIdOfOutputBelt, BELT_INPUT_SLOT);
                     factory.WriteObjectConnDirect(entityIdOfThisBelt, BELT_INPUT_SLOT, false, entityIdOfMainInputBelt, BELT_OUTPUT_SLOT);
                     factory.OnBeltBuilt(entityIdOfThisBelt);  // This reconnects the inserters
